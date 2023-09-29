@@ -20,6 +20,27 @@ app.use( cors( {origin:true } ) )
 //     return res.status(200).send('Hello biches!!')
 // })
 
+//GET all blogposts
+const getAllPosts = async (req, res) => {
+    try {
+      const blogpostsRef = db.collection('blogposts')
+      const snapshot = await blogpostsRef.get()
+  
+      const blogposts = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+  
+      return res.status(200).json(blogposts)
+    } catch (error) {
+      console.error(error)
+      return res.status(500).json({ error: 'Server error' })
+    }
+  }
+  
+  app.get('/blogposts', getAllPosts)
+
+
 //CREATE a blogpost
 //POST
 const createBlogPost = async (req, res) => {
@@ -40,7 +61,7 @@ const createBlogPost = async (req, res) => {
   app.post('/create', createBlogPost)
 
 //READ a specific product based on id
-//GET
+//GET by ID
 const getBlogById = async (req, res) => {
     try {
       const blogPostId = req.params.id
