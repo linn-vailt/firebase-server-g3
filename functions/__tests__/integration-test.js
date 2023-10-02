@@ -2,14 +2,6 @@
  * @group integration
  */
 
-// describe('When testing jest', () => {
-// 	describe('given i have a non failing test', () => {
-// 		it('should be one', () => {
-// 			expect(1).toBe(1)
-// 		})
-// 	})
-// })
-
 const request = require("supertest");
 const PORT = process.env.PORT || 5000;
 const HOST = process.env.HOST || `http://localhost:${PORT}`;
