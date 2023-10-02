@@ -6,7 +6,10 @@
     "shell": "firebase functions:shell",
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",
-    "logs": "firebase functions:log"
+    "logs": "firebase functions:log",
+    "test": "jest  --group=-component --group=-integration",
+    "component_test": "jest --group=component",
+    "integration_test": "jest --group=integration"
   },
   "engines": {
     "node": "18"
@@ -20,7 +23,13 @@
     "firebase-functions": "^4.3.1"
   },
   "devDependencies": {
-    "firebase-functions-test": "^3.1.0"
+    "firebase-functions-test": "^3.1.0",
+    "jest": "^29.7.0",
+    "jest-runner-groups": "^2.2.0",
+    "supertest": "^6.3.3"
   },
-  "private": true
+  "private": true,
+  "jest": {
+    "runner": "groups"
+  }
 }
